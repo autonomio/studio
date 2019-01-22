@@ -1,0 +1,43 @@
+{% include "header.html" %}
+
+{% block content %}{% endblock %}
+
+<!--- FIRST ROW STARTS ---->
+  <div class="row mb-3 centering">
+    <!--- FIRST ROW FIRST COL ---->
+    <div class="shadow col-md-6 themed-grid-col">
+        <div id='plot_optimize'>
+        <script>
+            var layout = {legend: {font: {size: 14}, x: 0.35, y: 5, orientation: 'h'},
+                          autosize: true,
+                          showlegend: true,
+                          paper_bgcolor:'#f1f1f1',
+                          plot_bgcolor:'#f1f1f1',
+                          margin: { l: 50, r: 50, b: 45, t: 45, pad: 10}}
+            var plot_optimize = {{ plot_optimize | safe }};
+            Plotly.plot('plot_optimize', plot_optimize, layout);
+        </script>
+        </div>
+    </div>
+    <!--- FIRST ROW SECOND COL ---->
+    <div class="shadow col-md-6 themed-grid-col">
+      <div id="plot_optimize_contour">
+        <script>
+          var layout2 = {autosize: true,
+                          paper_bgcolor:'#f1f1f1',
+                          plot_bgcolor:'#f1f1f1',
+                          margin: { l: 125, r: 50, b: 100, t: 45, pad: 10}}
+          var plot_optimize_contour = {{ plot_optimize_contour | safe }};
+          Plotly.plot('plot_optimize_contour', plot_optimize_contour, layout2);
+        </script>
+      </div>
+    </div>
+  </div><!--- FIRST ROW ENDS ---->
+
+    <!--- SECOND ROW STARTS ---->
+    <div class="shadow mt-4 centering">{{ html_source|safe }}</div><br><!--- SECOND ROW ENDS ---->
+     </div><!--- CONTAINER DIV ENDS ---->
+    </div>
+   </body>
+  <script src="{{ url_for('static', filename='js/dataframe_predict_result.js') }}"></script>
+</html>

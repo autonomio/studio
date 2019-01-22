@@ -1,0 +1,24 @@
+{% include "header.html" %}
+
+{% block content %}{% endblock %}
+  <div style='min-width: 400px; max-width: 600px; '>
+   <form action="/optimize_result" enctype="multipart/form-data" method="post" id="form_optimize">
+
+    <!---- drop_nan_cols ---->
+    <div class="form-group">
+      <select name='mode'>
+        <option>Auto</option>
+        <option>Custom</option>
+      </select>
+      <label for="select" class="control-label">Mode</label><i class="bar"></i>
+    </div>
+
+    <div class="form-group">
+      <input type="number" required="required" step=0.0001 value=0.1 min=0 max=1 name='grid_downsample'/>
+      <label for="input" class="control-label">Grid downsampling</label><i class="bar"></i>
+      <button type="submit" class="button" form="form_optimize"><span>OPTIMIZE</span></button>
+    </div>
+
+  </form>
+
+<html>

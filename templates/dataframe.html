@@ -1,0 +1,10 @@
+{% include "header.html" %}
+
+{% block content %}{% endblock %}
+
+    <div class="shadow mt-4 centering">{{ html_source|safe }}</div><br>
+     </div><!--- CONTAINER DIV ENDS ---->
+    </div>
+   </body>
+  <script src="{{ url_for('static', filename='js/dataframe.js') }}"></script>
+</html>

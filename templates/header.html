@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <title>Autonomio Studio</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<!--- BODY STARTS ---->
+<!--- BODY STARTS ---->
+<!--- BODY STARTS ---->
+<!--- BODY STARTS ---->
+
+<body class="py-4 extend_size">
+
+<!--- NAVIGATION STARTS ---->
+<!--- NAVIGATION STARTS ---->
+              <!-- Sidebar Holder -->
+          <div class="wrapper extend_size">
+            <nav id="sidebar" class='active'>
+                <ul class="list-unstyled components" style='border: none !important;'>
+                    
+                    <li>
+                    <a id='studio' href='/'>
+                    <img src="{{ url_for('static', filename='studio.png') }}"></img></a>
+                    </li>
+
+                    <li>
+                    <a id='training' href='/training'>
+                    <img src="{{ url_for('static', filename='training.png') }}"></img></a>
+                    </li>
+
+                    <li>
+                    <a id='optimize' href='/wrangle'>
+                    <img width=64px src="{{ url_for('static', filename='wrangle.png') }}"></img></a>
+                    </li>
+
+                    <li>
+                    <a id='optimize' href='/optimize'>
+                    <img src="{{ url_for('static', filename='optimize.png') }}"></img></a>
+                    </li>
+
+                    <li>
+                    <a id='predict' href='/predict'>
+                    <img src="{{ url_for('static', filename='predict.png') }}"></img></a>
+                    </li>
+
+                    <li>
+                    <a id='dataframe' href='/dataframe'>
+                    <img src="{{ url_for('static', filename='dataframe.png') }}"></img></a>
+                    </li>
+                  <!---
+                    <li>
+                       <a id="sidebarCollapse">
+                       <i class="glyphicon glyphicon-resize-small"></i>Toggle</a>
+                    </li>
+                  -->
+            </nav>
+            </ul>
+          </nav>
+
+<div class="container" style='margin: 10px;'>

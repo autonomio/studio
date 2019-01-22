@@ -1,0 +1,181 @@
+{% include "header.html" %}
+
+{% block content %}{% endblock %}
+  <div style='min-width: 400px; max-width: 600px; '>
+   <form action="/training" enctype="multipart/form-data" method="post" id="form1">
+
+    <!---- data ---->
+    <div class="form-group">
+      <input type="text" required="required" value='https://raw.githubusercontent.com/plotly/datasets/master/diabetes.csv' name='data'/>
+      <label for="input" class="control-label">Path to data</label><i class="bar"></i>
+    </div>
+
+    <!---- label_column ---->
+    <div class="form-group">
+      <input type="text" required="required" value='Outcome' name='label_column'/>
+      <label for="input" class="control-label">Label column</label><i class="bar"></i>
+    </div>
+
+    <!---- layers ---->
+    <div class="form-group">
+      <input type="number" required="required" value=2 min=1 name='layers'/>
+      <label for="input" class="control-label">Number of layers</label><i class="bar"></i>
+    </div>
+   
+   <!---- layers ---->
+    <div class="form-group">
+      <input type="number" required="required" value=24 min=1 name='neurons'/>
+      <label for="input" class="control-label">Neurons per layer</label><i class="bar"></i>
+    </div>
+    
+    <!---- shape ---->
+    <div class="form-group">
+      <select name='shape'>
+        <option>Brick</option>
+        <option>Funnel</option>
+        <option>Reverse Pyramid</option>
+      </select>
+      <label for="select" class="control-label">Network shape</label><i class="bar"></i>
+    </div>
+
+   <!---- activation ---->
+    <div class="form-group">
+      <select name='activation'>
+        <option>relu</option>
+        <option>elu</option>
+        <option>selu</option>
+        <option>tanh</option>
+        <option>exponential</option>
+        <option>linear</option>
+      </select>
+      <label for="select" class="control-label">Activation</label><i class="bar"></i>
+    </div>
+
+   <!---- optimizer ---->
+    <div class="form-group">
+      <select name='optimizer'>
+        <option>Adam</option>
+        <option>SGD</option>
+        <option>RMSprop</option>
+        <option>---------</option>
+        <option>Adadelta</option>
+        <option>Adagrad</option>
+        <option>Adamax</option>
+        <option>Nadam</option>
+      </select>
+      <label for="select" class="control-label">Optimizer</label><i class="bar"></i>
+    </div>
+   
+   <!---- kernel_initializer ---->
+    <div class="form-group">
+      <select name='kernel_initializer'>
+        <option>GlorotUniform</option>
+        <option>RandomUniform</option>
+        <option>RandomNormal</option>
+        <option>VarianceScaling</option>
+        <option>Orthogonal</option>
+        <option>TruncatedNormal</option>
+      </select>
+      <label for="select" class="control-label">Kernel Initializer</label><i class="bar"></i>
+    </div>
+
+   <!---- dropout ---->
+    <div class="form-group">
+      <select name='dropout' type='number'>
+        <option>0</option>
+        <option>0.1</option>
+        <option>0.2</option>
+        <option>0.3</option>
+        <option>0.4</option>
+        <option>0.5</option>
+        <option>0.6</option>
+        <option>0.7</option>
+        <option>0.8</option>
+        <option>0.9</option>
+      </select>
+      <label for="select" class="control-label">Dropout rate</label><i class="bar"></i>
+    </div>
+
+   <!---- last_activation ---->
+    <div class="form-group">
+      <select name='last_activation'>
+        <option>sigmoid</option>
+        <option>softmax</option>
+        <option>None</option>
+        <option>---------</option>
+        <option>hard_sigmoid</option>
+        <option>softplus</option>
+        <option>softsign</option>
+      </select>
+      <label for="select" class="control-label">Last layer activation</label><i class="bar"></i>
+    </div>
+
+   <!---- loss ---->
+    <div class="form-group">
+      <select name='losses'>
+        <option>binary_crossentropy</option>
+        <option>logcosh</option>
+        <option>kullback_leibler_divergence</option>
+        <option>categorical_crossentropy</option>
+        <option>sparse_categorical_crossentropy</option>
+        <option>mean_squared_error</option>
+        <option>mean_squared_logarithmic_error</option>
+        <option>-------</option>
+        <option>categorical_hinge</option>
+        <option>cosine_proximity</option>
+        <option>hinge</option>
+        <option>kullback_leibler_divergence</option>
+        <option>mean_absolute_error</option>
+        <option>mean_absolute_percentage_error</option>
+        <option>poisson</option>
+        <option>squared_hinge</option>
+      </select>
+      <label for="select" class="control-label">Loss function</label><i class="bar"></i>
+    </div>
+
+
+    <!---- loss ---->
+    <div class="form-group">
+      <select name='metric'>
+        <option>acc</option>
+        <option>f1score</option>
+      </select>
+      <label for="select" class="control-label">Metric</label><i class="bar"></i>
+    </div>
+
+
+    <!---- batch_size ---->
+    <div class="form-group">
+      <input type="number" required="required" value=24 name='batch_size'/>
+      <label for="input" class="control-label">Batch size</label><i class="bar"></i>
+    </div>
+
+    <!---- epochs ---->
+    <div class="form-group">
+      <input type="number" required="required" value=10 name='epochs'/>
+      <label for="input" class="control-label">Epochs</label><i class="bar"></i>
+    </div>
+
+    <!---- validation_split ---->
+    <div class="form-group">
+      <input type="number" step="0.1" value=0.3 min=0 max=0.9 required="required" name='validation_split'/>
+      <label for="input" class="control-label">Validation split</label><i class="bar"></i>
+    </div>
+
+   <!---- compute ---->
+    <div class="form-group">
+      <select name='last_activation'>
+        <option>GPU</option>
+        <option>Multi-GPU</option>
+        <option>CPU</option>
+      </select>
+      <label for="select" class="control-label">Compute</label><i class="bar"></i>
+      <button type="submit" class="button" form="form1"><span>TRAIN</span></button>
+    </div>
+
+  <!---- BUTTON ---->
+    
+  </form>
+
+
+<html>

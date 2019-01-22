@@ -1,0 +1,21 @@
+{% include "header.html" %}
+
+{% block content %}{% endblock %}
+
+<form action="/wrangle_save" enctype="multipart/form-data" method="post" id="wrangle_save">
+ <div style='text-align: right'>
+  <button type="submit" class="button" form="wrangle_save" style='margin-top: 10px; margin-bottom: 5px; padding:4px 8px 4px 8px'><span>SAVE</span></button></div>
+</form>
+ <div class="shadow mt-4 centering">{{ html_source|safe }}</div><br>
+
+     </div><!--- CONTAINER DIV ENDS ---->
+    </div>
+   </body>
+  <script src="{{ url_for('static', filename='js/dataframe.js') }}"></script>
+</html>
+
+
+
+
+
+   

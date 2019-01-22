@@ -1,0 +1,84 @@
+{% include "header.html" %}
+
+{% block content %}{% endblock %}
+  <div style='min-width: 400px; max-width: 600px; '>
+   <form action="/wrangle_process" enctype="multipart/form-data" method="post" id="wrangle_process">
+
+    <!---- drop_cols ---->
+    <div class="form-group">
+      <select multiple="multiple" name='drop_cols' style='height: 100px;'>
+        {% for column in columns %}
+        <option>{{ column }}</option>
+        {% endfor %}
+      </select>
+      <label for="select" class="control-label">Drop columns</label><i class="bar"></i>
+    </div>
+
+    <!---- drop_nan_cols ---->
+    <div class="form-group">
+      <select name='drop_nan_cols'>
+        <option>True</option>
+        <option>False</option>
+      </select>
+      <label for="select" class="control-label">Drop cols with NaN</label><i class="bar"></i>
+    </div>
+
+    <!---- drop_nan_rows ---->
+    <div class="form-group">
+      <select name='drop_nan_rows'>
+        <option>True</option>
+        <option>False</option>
+      </select>
+      <label for="select" class="control-label">Drop rows with NaN</label><i class="bar"></i>
+    </div>
+
+    <!---- drop_nonnumeric ---->
+    <div class="form-group">
+      <select name='drop_nonnumeric'>
+        <option>True</option>
+        <option>False</option>
+      </select>
+      <label for="select" class="control-label">Drop non-numeric</label><i class="bar"></i>
+    </div>
+
+    <!---- drop_duplicate_rows ---->
+    <div class="form-group">
+      <select name='drop_duplicate_rows'>
+        <option>True</option>
+        <option>False</option>
+      </select>
+      <label for="select" class="control-label">Drop duplicate rows</label><i class="bar"></i>
+    </div>
+
+    <!---- convert_to_floats ---->
+    <div class="form-group">
+      <select name='convert_to_floats'>
+        <option>True</option>
+        <option>False</option>
+      </select>
+      <label for="select" class="control-label">Convert to floats</label><i class="bar"></i>
+    </div>
+
+    <!---- remove_outliers ---->
+    <div class="form-group">
+      <select name='remove_outliers'>
+        <option>False</option>
+        <option>True</option>
+      </select>
+      <label for="select" class="control-label">Remove outliers</label><i class="bar"></i>
+    </div>
+    
+    <!---- transformation ---->
+    <div class="form-group">
+      <select name='transformation'>
+        <option>False</option>
+        <option>transform_meanzero</option>
+        <option>transform_log</option>
+        <option>transform_sqrt</option>
+      </select>
+      <label for="select" class="control-label">Transformation</label><i class="bar"></i>
+      <button type="submit" class="button" form="wrangle_process"><span>PROCESS</span></button>
+    </div>
+   </form>
+  </body>
+  </html>

@@ -1,0 +1,10 @@
+{% block content%}
+<form method="post">
+    {{ form.csrf_token }}
+    {{ form.query }}
+    {{ form.submit }}
+    {% if results %}
+        {{ results }}
+    {% endif %}
+</form>
+{% endblock %}

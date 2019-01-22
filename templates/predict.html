@@ -1,0 +1,21 @@
+{% include "header.html" %}
+
+{% block content %}{% endblock %}
+  <div style='min-width: 400px; max-width: 600px; '>
+   <form action="/predict_result" enctype="multipart/form-data" method="post" id="form_predict">
+
+    <div class="form-group">
+      <input type="text" required="required" value='https://raw.githubusercontent.com/plotly/datasets/master/diabetes.csv' name='data'/>
+      <label for="input" class="control-label">Path to data</label><i class="bar"></i>
+      
+    </div>
+
+    <div class="form-group">
+      <input type="text" required="required" value='None' name='id_column'/>
+      <label for="input" class="control-label">ID Column</label><i class="bar"></i>
+      <button type="submit" class="button" form="form_predict"><span>PREDICT</span></button>
+    </div>
+
+  </form>
+
+<html>

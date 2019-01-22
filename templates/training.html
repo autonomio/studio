@@ -1,0 +1,61 @@
+{% include "header.html" %}
+
+{% block content %}{% endblock %}
+
+<!--- SECOND ROW STARTS ---->
+  <div class="row mb-3 centering">
+    <!--- SECOND ROW FIRST COL ---->
+    <div class="shadow col-md-6 themed-grid-col">
+      <div id="plot_train">
+          <script>
+              var layout = {legend: {font: {size: 14}, x: 0.35, y: 5, orientation: 'h'},
+                            autosize: false,
+                            showlegend: true,
+                            paper_bgcolor:'#f1f1f1',
+                            plot_bgcolor:'#f1f1f1',
+                            margin: { l: 50, r: 50, b: 45, t: 45, pad: 10}}
+              var plot_train = {{ plot_train | safe }};
+              Plotly.plot('plot_train', plot_train, layout);
+          </script>
+      </div>
+    </div>
+    <!--- SECOND ROW SECOND COL ---->
+    <div class="shadow col-md-6 themed-grid-col">
+      <div id="plot_train_val">
+        <script>
+          var plot_train_val = {{ plot_train_val | safe }};
+          Plotly.plot('plot_train_val', plot_train_val, layout);
+        </script>
+      </div>
+    </div>
+  
+  </div><!--- SECOND ROW ENDS ---->
+
+<!--- THIRD ROW STARTS ---->
+  <div class="row mb-3 centering">     
+    <!--- THIRD ROW FIRST COL ---->
+    <div class="shadow col-md-6 themed-grid-col">
+      <div id="plot_cross_val">
+        <script>
+          var plot_cross_val = {{ plot_cross_val | safe }};
+          Plotly.plot('plot_cross_val', plot_cross_val, layout);
+        </script>
+      </div>
+    </div>
+    <!--- THIRD ROW SECOND COL ---->
+    <div class="shadow col-md-6 themed-grid-col">
+      <div id="plot_predictions">
+        <script>
+          var plot_predictions = {{ plot_predictions | safe }};
+          Plotly.plot('plot_predictions', plot_predictions, layout);
+        </script>
+      </div>
+    </div>
+  
+  </div> <!--- THIRD ROW ENDS ---->
+
+  <div class="shadow mt-4 centering">{{ html_source|safe }}</div>
+
+</div><!--- CONTAINER DIV ENDS ---->
+</body>
+</html>

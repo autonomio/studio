@@ -1,0 +1,25 @@
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+<form id="form-id">
+
+  <a href="#" onclick="doPost();"> submit </a>
+
+</form>
+
+
+<script type="text/javascript">
+	
+function doPost () {
+
+	axios({
+	  method: 'post',
+	  url: '/test',
+	  data: 'testing_data'
+	}).then(res => {
+		window.location.href="test"
+	});
+
+}
+
+</script>
