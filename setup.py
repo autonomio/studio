@@ -11,7 +11,7 @@ setup(
         'keras',
         'tensorflow==1.6',
         'pandas',
-        'numpy',
+        'numpy==1.15.4',
         'talos',
         'sklearn',
         'requests',

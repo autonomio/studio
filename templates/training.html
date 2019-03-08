@@ -1,7 +1,6 @@
 {% include "header.html" %}
 
 {% block content %}{% endblock %}
-
 <!--- SECOND ROW STARTS ---->
   <div class="row mb-3 centering">
     <!--- SECOND ROW FIRST COL ---->
@@ -28,11 +27,11 @@
         </script>
       </div>
     </div>
-  
+
   </div><!--- SECOND ROW ENDS ---->
 
 <!--- THIRD ROW STARTS ---->
-  <div class="row mb-3 centering">     
+  <div class="row mb-3 centering">
     <!--- THIRD ROW FIRST COL ---->
     <div class="shadow col-md-6 themed-grid-col">
       <div id="plot_cross_val">
@@ -51,11 +50,12 @@
         </script>
       </div>
     </div>
-  
+
   </div> <!--- THIRD ROW ENDS ---->
 
   <div class="shadow mt-4 centering">{{ html_source|safe }}</div>
 
 </div><!--- CONTAINER DIV ENDS ---->
 </body>
-</html>
+
+{% include "footer.html" %}

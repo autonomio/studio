@@ -1,10 +1,12 @@
 import json
+import numpy as np
 
 import plotly
 import plotly.graph_objs as go
 
-import numpy as np
-import pandas as pd
+
+colorscale_blues = ['#208AAE', '#71B4CB', '#C2DFE8', '#489FBC', '#99C9DA', '#D6E9F0']
+colorscale_reds = ['#A72608', '#B74D34', '#C77461', '#D79C8E', '#E7C3BB']
 
 colorscale_heat = [[0.0, '#208AAE'],
                    [0.1111111111111111, '#489FBC'],
@@ -18,11 +20,10 @@ colorscale_heat = [[0.0, '#208AAE'],
                    [1.0, '#A72608']]
 
 
-
 def create_plots(cross_val, training, preds):
 
     # CROSS VALIDATION
-    
+
     x = np.array(list(range(len(cross_val))))
     y = np.array(cross_val)
 
@@ -38,10 +39,18 @@ def create_plots(cross_val, training, preds):
     cross_val_json = json.dumps(cross_val, cls=plotly.utils.PlotlyJSONEncoder)
 
     # PREDICTIONS
+    predictions = []
 
-    predictions = [go.Histogram(x=preds, name='Predictions', marker=dict(color='#208AAE'))]
-    predictions_json = json.dumps(predictions, cls=plotly.utils.PlotlyJSONEncoder)
+    no_of_labels = preds.shape[1]
 
+    for i in range(no_of_labels):
+        temp = go.Histogram(x=preds.iloc[:, i],
+                            name=str(i),
+                            marker=dict(color=colorscale_blues[i]))
+        predictions.append(temp)
+
+    predictions_json = json.dumps(predictions,
+                                  cls=plotly.utils.PlotlyJSONEncoder)
 
     # TRAINING VALIDATION
     acc = go.Scatter(x=list(range(len(training.history['acc']))),
@@ -86,20 +95,29 @@ def create_plots(cross_val, training, preds):
 
 def plot_histogram(preds):
 
-    predictions = [go.Histogram(x=preds, name='Predictions', marker=dict(color='#208AAE'))]
-    predictions_json = json.dumps(predictions, cls=plotly.utils.PlotlyJSONEncoder)
+    predictions = []
 
+    no_of_labels = preds.shape[1]
+
+    for i in range(no_of_labels):
+        temp = go.Histogram(x=preds.iloc[:, i],
+                            name=str(i),
+                            marker=dict(color=colorscale_blues[i]))
+        predictions.append(temp)
+
+    predictions_json = json.dumps(predictions,
+                                  cls=plotly.utils.PlotlyJSONEncoder)
     return predictions_json
 
 
 def plot_scatter(x, y):
 
     scatter = [go.Scatter(x=x,
-                         y=y,
-                         name='Validation Results',
-                         mode = 'markers',
-                         marker=dict(color='#208AAE')
-                         )]
+                          y=y,
+                          name='Validation Results',
+                          mode='markers',
+                          marker=dict(color='#208AAE')
+                          )]
     scatter_json = json.dumps(scatter, cls=plotly.utils.PlotlyJSONEncoder)
 
     return scatter_json

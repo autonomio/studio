@@ -4,11 +4,32 @@
   <div style='min-width: 400px; max-width: 600px; '>
    <form action="/training" enctype="multipart/form-data" method="post" id="form1">
 
-    <!---- data ---->
+   <!---- optimizer ---->
     <div class="form-group">
-      <input type="text" required="required" value='https://raw.githubusercontent.com/plotly/datasets/master/diabetes.csv' name='data'/>
+      <select id="country" onchange="ddData()">
+        <option value='custom'>local path or url</option>
+        <option value='https://raw.githubusercontent.com/plotly/datasets/master/diabetes.csv'>diabetes</option>
+        <option value='https://raw.githubusercontent.com/autonomio/datasets/master/autonomio-datasets/breast_cancer.csv'>breast cancer</option>
+        <option value='https://raw.githubusercontent.com/autonomio/datasets/master/autonomio-datasets/cervical_cancer.csv'>cercvical cancer</option>
+        <option value='https://raw.githubusercontent.com/autonomio/datasets/master/autonomio-datasets/icu_patients.csv'>icu patients</option>
+        <option value='https://raw.githubusercontent.com/autonomio/datasets/master/autonomio-datasets/icu_mortality.csv'>icu diagnosis</option>
+        <option value='https://raw.githubusercontent.com/autonomio/datasets/master/autonomio-datasets/bitcoin_price.csv'>bitcoin price</option>
+        <option value='https://raw.githubusercontent.com/autonomio/datasets/master/autonomio-datasets/programmatic_ad_fraud.csv'>ad fraud</option>
+        <option value='https://raw.githubusercontent.com/autonomio/datasets/master/autonomio-datasets/iris.csv'>iris</option>
+        <option value='https://raw.githubusercontent.com/autonomio/datasets/autonomio-datasets/parties_and_employment.csv'>parties and employment</option>
+        <option value='https://raw.githubusercontent.com/autonomio/datasets/master/autonomio-datasets/election_in_twitter.csv'>election in twitter</option>
+        <option value='https://raw.githubusercontent.com/autonomio/datasets/master/autonomio-datasets/personality_types_and_cannabis_use.csv'>personality and cannabis</option>
+      </select>
+      <label for="select" class="control-label">Datasets</label><i class="bar"></i>
+    </div>
+
+    <!---- data ---->
+  <div class="form-group" id="custom_data">
+      <input type="text" value='' id="custom_data_input" onKeyUp="customData()" />
       <label for="input" class="control-label">Path to data</label><i class="bar"></i>
     </div>
+
+  <input type="hidden" name='data' id='data'>
 
     <!---- label_column ---->
     <div class="form-group">
@@ -16,18 +37,29 @@
       <label for="input" class="control-label">Label column</label><i class="bar"></i>
     </div>
 
+    <!---- prediction_type ---->
+    <div class="form-group">
+      <select name='prediction_type'>
+        <option>binary</option>
+        <option>multiclass</option>
+        <option>multilabel</option>
+        <option>continuous</option>
+      </select>
+      <label for="select" class="control-label">Prediction type</label><i class="bar"></i>
+    </div>
+
     <!---- layers ---->
     <div class="form-group">
       <input type="number" required="required" value=2 min=1 name='layers'/>
       <label for="input" class="control-label">Number of layers</label><i class="bar"></i>
     </div>
-   
+
    <!---- layers ---->
     <div class="form-group">
       <input type="number" required="required" value=24 min=1 name='neurons'/>
       <label for="input" class="control-label">Neurons per layer</label><i class="bar"></i>
     </div>
-    
+
     <!---- shape ---->
     <div class="form-group">
       <select name='shape'>
@@ -65,7 +97,7 @@
       </select>
       <label for="select" class="control-label">Optimizer</label><i class="bar"></i>
     </div>
-   
+
    <!---- kernel_initializer ---->
     <div class="form-group">
       <select name='kernel_initializer'>
@@ -165,17 +197,36 @@
    <!---- compute ---->
     <div class="form-group">
       <select name='last_activation'>
-        <option>GPU</option>
-        <option>Multi-GPU</option>
-        <option>CPU</option>
+        <option value='gpu'>GPU</option>
+        <option value='multi-gpu'>Multi-GPU</option>
+        <option value='cpu'>CPU</option>
       </select>
       <label for="select" class="control-label">Compute</label><i class="bar"></i>
       <button type="submit" class="button" form="form1"><span>TRAIN</span></button>
     </div>
 
   <!---- BUTTON ---->
-    
+
   </form>
 
+<script>
+$(document).ready(function() {
+  $('#country').on('change.custom_data', function() {
+    $("#custom_data").toggle($(this).val() == 'custom');
+  }).trigger('change.custom_data');
+});
+</script>
 
-<html>
+<script language="javascript">
+function customData() {
+    document.getElementById("data").value = (document.getElementById("custom_data_input").value);
+    }
+
+</script>
+
+<script language="javascript">
+function ddData() {
+    document.getElementById("data").value = (document.getElementById("country").value);
+    }
+</script>
+{% include "footer.html" %}

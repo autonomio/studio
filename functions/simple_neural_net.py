@@ -7,31 +7,42 @@ from keras import backend as K
 
 def simple_neural_net(x_train, y_train, x_val, y_val, params):
 
-	K.clear_session()
+    '''Creates a Keras model based on inputs. Note that
+    certain things can't change here to ensure compatibility
+    with Talos hyperparameter optimization.'''
 
-	model = Sequential() # create model
+    # clear session to be safe
+    K.clear_session()
 
-	model.add(Dense(params['neurons'], input_dim=x_train.shape[1], activation=params['activation'])) # first layer 
-	model.add(Dropout(params['dropout']))
-	
-	for i in range(params['layers']): # hidden layers
-		
-		model.add(Dense(params['neurons'])) 
-		model.add(Dropout(params['dropout']))
-	
-	model.add(Dense(1, activation=params['last_activation'])) # last layer
+    # initiate the Keras model
+    model = Sequential()
 
-	model.compile(optimizer=params['optimizer'],
-				  loss=params['losses'],
-				  metrics=[params['metric']])
+    # create input layer
+    model.add(Dense(params['neurons'],
+                    input_dim=x_train.shape[1],
+                    activation=params['activation']))
 
-	history = model.fit(x=x_train, y=y_train,
-					    validation_split=params['validation_split'],
-					    batch_size=params['batch_size'],
-					    epochs=params['epochs'])
+    # dropout after input
+    model.add(Dropout(params['dropout']))
 
-	return history, model
+    # create hidden layers
+    for i in range(params['layers']):
+        model.add(Dense(params['neurons']))
+        model.add(Dropout(params['dropout']))
 
+    # output layer
+    model.add(Dense(params['last_neuron'],
+                    activation=params['last_activation']))
 
+    # compile the model
+    model.compile(optimizer=params['optimizer'],
+                  loss=params['losses'],
+                  metrics=[params['metric']])
 
-	
+    # fit the model
+    history = model.fit(x=x_train, y=y_train,
+                        validation_split=params['validation_split'],
+                        batch_size=params['batch_size'],
+                        epochs=params['epochs'])
+
+    return history, model
